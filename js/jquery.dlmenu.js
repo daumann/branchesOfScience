@@ -123,7 +123,7 @@
                 // one we added specifically for navigating to parent item pages.
                 if( ($submenu.length > 0) && !($(event.currentTarget).hasClass('dl-subviewopen'))) {
 
-                    $(".dl-back").html(`<a href="#">Back (${event.toElement.innerHTML})</a>`)
+                    $(".dl-back").html(`<a href="#">Back (${(((event || {}).target || {}).dataset || {}).wiki || event.toElement.innerHTML})</a>`)
 
                     var $flyin = $submenu.clone().css( 'opacity', 0 ).insertAfter( self.$menu ),
                         onAnimationEndFn = function() {
@@ -142,7 +142,7 @@
                             onAnimationEndFn.call();
                         }
 
-                        self.options.onLevelClick( $item, $item.children( 'a:first' ).text() );
+                        self.options.onLevelClick( $item, $item.children( 'a:first' ).text(), false );
                     } );
 
                     return false;
@@ -187,6 +187,8 @@
                         $(".dl-back").html(`<a href="#">Back (${parentText})</a>`)
                     }
                     $subview.removeClass( 'dl-subview' );
+
+                    self.options.onLevelClick( $item, $item.children( 'a:first' ).text(), true );
                 } );
 
                 return false;

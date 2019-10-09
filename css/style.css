@@ -858,6 +858,12 @@ All this is done for any sub-level being entered.
   content: '';
 }
 
+.dl-menuwrapper {
+  pointer-events: all;
+}
+
+
+
 /* Colors for demos */
 
 /* Demo 1 */
