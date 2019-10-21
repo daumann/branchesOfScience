@@ -17976,8 +17976,8 @@ var universityLatLng = {
         8.934
     ],
     "Friedensau": [
-        54.235,
-        -4.607
+        52.21,
+        11.987
     ],
     "Offenbach": [
         50.1,

@@ -123,7 +123,7 @@
                 // one we added specifically for navigating to parent item pages.
                 if( ($submenu.length > 0) && !($(event.currentTarget).hasClass('dl-subviewopen'))) {
 
-                    $(".dl-back").html(`<a href="#">Back (${(((event || {}).target || {}).dataset || {}).wiki || event.toElement.innerHTML})</a>`)
+                    $(".dl-back").html(`<a href="#">Back (${(((event || {}).target || {}).dataset || {}).wiki || (event.toElement || {}).innerHTML || (event.target || {}).innerHTML})</a>`)
 
                     var $flyin = $submenu.clone().css( 'opacity', 0 ).insertAfter( self.$menu ),
                         onAnimationEndFn = function() {

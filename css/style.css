@@ -224,6 +224,9 @@ nav .up:hover {
   pointer-events: auto;
   -webkit-transform: translateY(0px);
   transform: translateY(0px);
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+  background: transparent;
 
 }
 
@@ -993,6 +996,18 @@ a:hover {
   max-width: 69em;
   padding-top: 10px;
   padding-left: 36px;
+}
+
+#search::-webkit-input-placeholder { /* Edge */
+  color: #395970;
+}
+
+#search:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #395970;
+}
+
+#search::placeholder {
+  color: #395970;
 }
 
 .column {
