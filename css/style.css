@@ -46,7 +46,7 @@ nav .up:hover {
 }
 .node .label {
   display: inline;
-  font-family: sans-serif;
+  font-family: 'Lekton', sans-serif;
   color: rgba(255, 255, 255, 0.6);
   position: absolute;
   padding: 0;
@@ -968,7 +968,7 @@ body, html { font-size: 100%; 	padding: 0; margin: 0;}
 }
 
 body {
-  font-family: 'Lato', Calibri, Arial, sans-serif;
+font-family: 'Lekton', sans-serif;
   color: #b1aea6;
   background: #fffcf5;
   min-height: 800px;
@@ -1185,11 +1185,7 @@ a:hover {
 
 .fa-search {
 
-  width: 60px;
-  height: 60px;
-  display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1201,4 +1197,10 @@ a:hover {
   float: left;
   line-height: 55px;
   margin-left: 8px;
+}
+
+.leaflet-tooltip-pane > div {
+  /*padding: 10px;*/
+  /*margin-left: -10px;*/
+  margin-top: -5px;
 }

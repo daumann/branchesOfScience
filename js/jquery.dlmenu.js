@@ -8,6 +8,7 @@
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
+var currentParent = ""
 ;( function( $, window, undefined ) {
 
     'use strict';
@@ -122,8 +123,9 @@
                 // Only go to the next menu level if one exists AND the link isn't the
                 // one we added specifically for navigating to parent item pages.
                 if( ($submenu.length > 0) && !($(event.currentTarget).hasClass('dl-subviewopen'))) {
+                    var parentText = (($(".subjectItem.dl-subviewopen")[0] || {}).dataset || {}).wiki
 
-                    $(".dl-back").html(`<a href="#">Back (${(((event || {}).target || {}).dataset || {}).wiki || (event.toElement || {}).innerHTML || (event.target || {}).innerHTML})</a>`)
+                    $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
 
                     var $flyin = $submenu.clone().css( 'opacity', 0 ).insertAfter( self.$menu ),
                         onAnimationEndFn = function() {
@@ -182,9 +184,11 @@
                     var $subview = $this.parents( '.dl-subview:first' );
                     if( $subview.is( 'li' ) ) {
                         $subview.addClass( 'dl-subviewopen' );
-                        var parentText = $(".dl-subviewopen a").html()
+                        var parentText =
+                            ((((((((event.currentTarget || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).dataset || {}).wiki
+                        //$(".dl-subviewopen a").html()
 
-                        $(".dl-back").html(`<a href="#">Back (${parentText})</a>`)
+                        $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
                     }
                     $subview.removeClass( 'dl-subview' );
 
