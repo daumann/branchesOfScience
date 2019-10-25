@@ -11,7 +11,6 @@
     body {
         height: 100%;
         width: 100%;
-        position: absolute;
         margin: 0;
         font-family: 'Lekton', sans-serif;
         overflow: hidden;
@@ -51,6 +50,7 @@
     }
 
     #tooltip-span {
+        font-family: 'Rajdhani', sans-serif;
         text-decoration:none;
         position:relative;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px;
@@ -81,7 +81,7 @@
         background-image: linear-gradient(57deg, #464646 0%, #4a4a4a 21%, #909090 100%);
     }
     .container #map {
-        flex: 0 0 60%; /*40%;*/
+        flex: 0 0 70%;
         margin: 0 0 0 auto;
         position: sticky !important;
         right: 0;
@@ -202,7 +202,7 @@
         transition: 1s opacity;
         position: fixed;
         bottom: 12px;
-        right: 9%;
+        left: 30%;
         z-index: 999999;
         /*background: rgba(255, 255, 255, 0.71);*/
         padding-left: 12px;
@@ -213,10 +213,19 @@
     .iframeContainer {
         background: white;
         padding-left: 12px;
-        padding-right: 12px;
-        width: 40%;
+        margin-left: 0px;
+        padding-right: 0px;
+        width: calc(30% + 8px);
         height: 100%;
         position: absolute;
+        display: flex;
+        flex-flow: column;
+    }
+
+    #articleIframe {
+        padding: 12px 8px 0px;
+        height: 100%;
+        /*margin-bottom: -46px;*/
     }
 
     .selectedSubject {
@@ -230,9 +239,8 @@
     #logoId {
         opacity: 1;
         z-index: 9;
-        position: fixed;
-        top: 73px;
-        right: 0;
+        top: 0;
+        left: 0;
         width: 366px;
         background: #ffffffbf;
         pointer-events: none;
@@ -283,8 +291,7 @@
 </style>
 <body>
 <div class="container">
-    <img id="logoId" src="./images/BoS_image_TopLeft.svg" alt="Hi-Knowledge – dive into science" draggable="false" style="opacity: 1;">
-    <div id="tooltip-span" style="position: absolute;"></div>
+    <div id="tooltip-span" style="position: absolute; top: 112px; left: 372px; opacity: 0;"></div>
     <!--<div id="helper">-->
         <!--<- Fields of studies-->
         <!--<br />-->
@@ -294,17 +301,32 @@
         <!--Where you can study ->-->
     <!--</div>-->
     <div class="iframeContainer">
-        <iframe id="articleIframe" src="https://en.wikipedia.org/wiki/Branches_of_science?printable=yes" frameborder="0" style="width: 100%; height: calc(100% - 8px); padding: 18px 8px 0px;"></iframe>
+        <div>
+        <img id="logoId" src="./images/BoS_Logo.svg" alt="Hi-Knowledge – dive into science" draggable="false" style="opacity: 1;">
+        <div>
+            <p style="color: #437080; font-weight: 800;">Here goes a description of the project. It should be running on 4-5 lines of text, and below here goes a Wikipedia box, where content is loaded dynamically. On the right site of the page is the main dropdown menu as well as the map of Germany.</p>
+            <span style=" color: #437080; font-weight: 800;">contact</span>
+        </div>
+        <div style="
+    background: #d1cfd4;
+    height: 10px;
+    width: calc(100% + 40px);
+    padding-top: 4px;
+    margin-left: -48px;
+    margin-top: 19px;
+"></div>
+    </div>
+        <iframe id="articleIframe" src="https://en.wikipedia.org/wiki/Social Sciences?printable=yes" frameborder="0" style="width: 100%;display: block;"></iframe>
 
-        <div id="contentWiki" style="color: #3a5971; height: 100%; overflow: auto; display: none">
+        <div id="contentWiki" style="display: none">
             <h3 id="universityLocation"></h3>
-            <i>Click on the institution name to browse available courses and sort rows by clicking the header column</i>
-            <br/>
-            <br/>
+            <!--<i>Click on the institution name to browse available courses and sort rows by clicking the header column</i>-->
+            <!--<br/>-->
+            <!--<br/>-->
             <div id="universityCourses"></div>
         </div>
     </div>
-    <div class="demo-3 search" style=" right: -52px; left: auto; ">
+    <div class="demo-3 search" style="right: -52px;left: auto;top: 0px;">
         <div class="main clearfix" style="pointer-events: none;">
             <div class="column" style="pointer-events: none;">
                 <div class="dl-menuwrapper">
@@ -316,7 +338,7 @@
     float: left;
     margin: 0px;
     padding: 12px;
-    font-size: 24px;
+    font-size: 18px;
     color: #395970;
     /* width: 100%; */
 ">
@@ -329,13 +351,15 @@
             </div>
         </div>
     </div>
-    <div class="demo-3">
+    <div class="demo-3" style="
+    top: 65px;
+">
         <!-- Codrops top bar -->
         <div class="main clearfix" style="pointer-events: none;">
             <div class="column" style="pointer-events: none;">
                 <div id="dl-menu" class="dl-menuwrapper">
                     <h3 class="dl-header">Select your desired topic</h3>
-                    <button class="dl-trigger">Branches of Science</button>
+                    <button class="dl-trigger dl-active">Branches of Science</button>
                     <ul class="dl-menu" id="dl-menu-attach" style="pointer-events: all;">
                     </ul>
                 </div><!-- /dl-menuwrapper -->
@@ -428,8 +452,8 @@
         var group = L.layerGroup()
         var tooltipSpan = document.getElementById('tooltip-span');
 
-        var southWest = L.latLng(47.92, 5.90),
-            northEast = L.latLng(56.12, 15.10),
+        var southWest = L.latLng(47.654, 5.90),
+            northEast = L.latLng(54.785, 14.807),
             bounds = L.latLngBounds(southWest, northEast);
 
         var map = L.map('map', {
@@ -641,7 +665,7 @@
         }
 
         function cityClicked(universityName) {
-            $("#universityLocation").html("Courses available in " + universityName)
+            $("#universityLocation").html("Universities in " + universityName)
             const wikiAlreadyOpen = $("#myDiv").css("display") === "block"
             $("#articleIframe").css("display","none");
             $("#contentWiki").css("display","block");

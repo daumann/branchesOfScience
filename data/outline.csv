@@ -846,8 +846,8 @@ Statistical mechanics,Statistical mechanics,Physics
 Theoretical physics,Theoretical physics,Physics
 Thermodynamics,Thermodynamics,Physics
 Vehicle dynamics,Vehicle dynamics,Physics
-Formal Sciences,Formal Sciences,Branches of Science
-Computer Science,Computer Science,Formal Sciences
+Formal science,Formal science,Branches of Science
+Computer Science,Computer Science,Formal science
 Logic in computer science,Logic in computer science,Computer Science
 Formal methods,Formal methods,Logic in computer science
 Logic programming,Logic programming,Logic in computer science
@@ -942,7 +942,7 @@ Computability theory (computer science),Computability theory,Theory of computati
 Computational complexity theory,Computational complexity theory,Theory of computation
 Concurrency (computer science)#Theory,Concurrency theory,Theory of computation
 Very-large-scale integration,VLSI design,Computer Science
-Mathematics,Mathematics,Formal Sciences
+Mathematics,Mathematics,Formal science
 Pure mathematics,Pure mathematics,Mathematics
 Mathematical logic,Mathematical logic,Pure mathematics
 Intuitionistic logic,Intuitionistic logic,Mathematical logic
@@ -1046,7 +1046,7 @@ Mathematical statistics,Mathematical statistics,Statistics
 Data visualization,Data visualization,Statistics
 Theory of computation,Theory of computation,Applied mathematics
 Computational complexity theory,Computational complexity theory,Theory of computation
-Statistics,Statistics,Formal Sciences
+Statistics,Statistics,Formal science
 Astrostatistics,Astrostatistics,Statistics
 Biostatistics,Biostatistics,Statistics
 Applied Sciences,Applied Sciences,Branches of Science

@@ -224,10 +224,9 @@ nav .up:hover {
   pointer-events: auto;
   -webkit-transform: translateY(0px);
   transform: translateY(0px);
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 134px);
   overflow: auto;
   background: transparent;
-
 }
 
 /* Hide the inner submenus */
@@ -891,8 +890,10 @@ All this is done for any sub-level being entered.
   background: #D35400;
 }
 
-.demo-3 {left: 40%;
-  position: absolute;}
+.demo-3 {
+  left: 30% !important;
+  position: absolute;
+}
 
 
 /* Demo 3 */
@@ -906,7 +907,7 @@ All this is done for any sub-level being entered.
 
 .demo-3 .dl-menuwrapper .subjectItem:hover,
 .demo-3 .dl-menuwrapper button.dl-active {
-   background: #00cb96;
+  background: #00cb96;
 }
 
 /* Demo 4 */
@@ -968,7 +969,7 @@ body, html { font-size: 100%; 	padding: 0; margin: 0;}
 }
 
 body {
-font-family: 'Lekton', sans-serif;
+  font-family: 'Lekton', sans-serif;
   color: #b1aea6;
   background: #fffcf5;
   min-height: 800px;
@@ -1013,7 +1014,7 @@ a:hover {
 .column {
   z-index: 9999999;
   float: left;
-  width: 50%;
+  width: 25%;
   padding: 0 2em;
   min-height: 300px;
   min-width: 420px;
@@ -1148,11 +1149,11 @@ a:hover {
 }
 
 /*.marker-icon-svg {*/
-  /*background: #fff;*/
-  /*border: 1px solid #666;*/
-  /*border-radius: 50%;*/
-  /*height: 12px;*/
-  /*width: 12px;*/
+/*background: #fff;*/
+/*border: 1px solid #666;*/
+/*border-radius: 50%;*/
+/*height: 12px;*/
+/*width: 12px;*/
 /*}*/
 
 .leaflet-fa-markers {
@@ -1183,6 +1184,10 @@ a:hover {
   opacity: 0.8;
 }
 
+.leaflet-top.leaflet-left {
+  display: none;
+}
+
 .fa-search {
 
   font: normal normal normal 14px/1 FontAwesome;
@@ -1203,4 +1208,11 @@ a:hover {
   /*padding: 10px;*/
   /*margin-left: -10px;*/
   margin-top: -5px;
+}
+
+#contentWiki {
+  color: rgb(58, 89, 113);
+  margin-right: 8px;
+  padding-left: 12px;
+  overflow: auto;
 }
