@@ -241,7 +241,7 @@
         z-index: 9;
         top: 0;
         left: 0;
-        width: 366px;
+        width: 400px;
         background: #ffffffbf;
         pointer-events: none;
     }
@@ -301,18 +301,22 @@
         <!--Where you can study ->-->
     <!--</div>-->
     <div class="iframeContainer">
+        <div style="padding-right: 12px">
+        <img id="logoId" src="./images/BoS_Logo.png" alt="Hi-Knowledge – dive into science" draggable="false" style="opacity: 1;">
         <div>
-        <img id="logoId" src="./images/BoS_Logo.svg" alt="Hi-Knowledge – dive into science" draggable="false" style="opacity: 1;">
-        <div>
-            <p style="color: #437080; font-weight: 800;">Here goes a description of the project. It should be running on 4-5 lines of text, and below here goes a Wikipedia box, where content is loaded dynamically. On the right site of the page is the main dropdown menu as well as the map of Germany.</p>
-            <span style=" color: #437080; font-weight: 800;">contact</span>
+            <div style="padding-left: 14px;padding-right: 14px;">
+                <h3  style="color: #437080; font-weight: 800; margin-bottom: 2px;">mapping courses and universities</h3>
+                <span style="font-weight: 800;color: #7bf1cd;font-size: 14px;font-style: italic;">in Germany</span>
+                <p style="color: #437080; font-weight: 800;">Here goes a description of the project. It should be running on 4-5 lines of text, and below here goes a Wikipedia box, where content is loaded dynamically.</p>
+                <span style=" color: #437080; font-weight: 800;">contact</span>
+            </div>
         </div>
         <div style="
     background: #d1cfd4;
     height: 10px;
     width: calc(100% + 40px);
     padding-top: 4px;
-    margin-left: -48px;
+    margin-left: -36px;
     margin-top: 19px;
 "></div>
     </div>
@@ -333,18 +337,18 @@
                     <input placeholder="Search Course/ City" type="text" id="search" name="name" style="
     background: transparent;
     border: none;
-    width: calc(100% - 60px);
-    height: 60px;
+    width: calc(100% - 50px);
+    height: 50px;
     float: left;
     margin: 0px;
-    padding: 12px;
-    font-size: 18px;
+    padding: 20px;
+    font-size: 16px;
     color: #395970;
     /* width: 100%; */
 ">
                     <ul class="dl-menu">
                     </ul>
-                    <div class="searchButton" style="width: 60px;height: 60px;background: #395970;font: normal normal normal 14px/1 FontAwesome;color: white;float: right;cursor: pointer;"><i class="fas fa-search"></i></div>
+                    <div class="searchButton" style="width: 50px;height: 50px;background: #395970;font: normal normal normal 14px/1 FontAwesome;color: white;float: right;cursor: pointer;"><i class="fas fa-search"></i></div>
                     <div>
                     </div>
                 </div><!-- /dl-menuwrapper -->
@@ -352,7 +356,7 @@
         </div>
     </div>
     <div class="demo-3" style="
-    top: 65px;
+    top: 64px;
 ">
         <!-- Codrops top bar -->
         <div class="main clearfix" style="pointer-events: none;">
@@ -391,6 +395,8 @@
     var BACKGROUNDCOLOR1 = '#dadada'
     var BACKGROUNDCOLOR2 = '#fff7f7'
     var MARKERCOLOR = '#607d93'
+
+    var toAddAsterix = ['Natural Sciences', 'Biology', 'Ecology']
 
     function triggerEvent(el, type){
         if ('createEvent' in document) {
@@ -452,13 +458,14 @@
         var group = L.layerGroup()
         var tooltipSpan = document.getElementById('tooltip-span');
 
-        var southWest = L.latLng(47.654, 5.90),
+        var southWest = L.latLng(47.654, 2.90),
             northEast = L.latLng(54.785, 14.807),
             bounds = L.latLngBounds(southWest, northEast);
 
         var map = L.map('map', {
             center:[51.42, 9.60],
-            zoom: 10,
+            zoom: 18,
+            zoomSnap: 0.25,
             maxZoom: 18,
             minZoom: 4,
             // maxBounds: bounds,
@@ -765,7 +772,7 @@
                     li.dataset.wiki = child.data.itemWiki
                     li.id = "myDl" + child.id  // + idIterator
                     idIterator = idIterator + 1;
-                    li.innerHTML = '<a href="#">' + child.id + '</a>'
+                    li.innerHTML = '<a href="#">' + child.id + (toAddAsterix.indexOf(child.id) > -1 ? ' (*)' : '') + '</a>'
                     li.addEventListener("mouseover", function(e){
                         handleMouseOver(child, e)
                     });

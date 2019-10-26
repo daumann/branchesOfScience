@@ -79,6 +79,12 @@ var currentParent = ""
             this.$menu = this.$el.children( 'ul.dl-menu' );
             this.$menuitems = this.$menu.find( 'li:not(.dl-back)' );
             this.$el.find( 'ul.dl-submenu' ).prepend( '<li class="dl-back"><a href="#">' + this.options.backLabel + '</a></li>' );
+            this.$el.find( 'ul.dl-submenu' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
+            this.$el.find( '#dl-menu-attach' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
+
+
+
+
             this.$back = this.$menu.find( 'li.dl-back' );
 
             // Set the label text for the back link.
@@ -126,6 +132,8 @@ var currentParent = ""
                     var parentText = (($(".subjectItem.dl-subviewopen")[0] || {}).dataset || {}).wiki
 
                     $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
+
+                    // $(".dl-submenu").prepend( '<a href="#">Alternative medicine</a>' );
 
                     var $flyin = $submenu.clone().css( 'opacity', 0 ).insertAfter( self.$menu ),
                         onAnimationEndFn = function() {
