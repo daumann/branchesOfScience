@@ -549,6 +549,8 @@
 
         function handleMouseOver(d, event) {
             event.stopPropagation();
+            var pathList = event.path.map(function(e) { return e.className })
+            if (pathList.indexOf("dl-legend-menu") > -1 || pathList.indexOf("dl-back") > -1) return
             var wikiId = d.data.itemWiki || d.data.data.itemWiki
             var wikiLabel = d.data.itemLabel || d.data.data.itemLabel
             var dataHeight = typeof d.height !== "undefined" ? d.height : d.data.height
