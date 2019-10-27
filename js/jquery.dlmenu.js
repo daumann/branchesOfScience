@@ -130,7 +130,7 @@ var currentParent = ""
                 // one we added specifically for navigating to parent item pages.
                 if( ($submenu.length > 0) && !($(event.currentTarget).hasClass('dl-subviewopen'))) {
                     var parentText = (($(".subjectItem.dl-subviewopen")[0] || {}).dataset || {}).wiki
-
+                    $(".dl-header").html( $item[0].dataset.wiki )
                     $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
 
                     // $(".dl-submenu").prepend( '<a href="#">Alternative medicine</a>' );
@@ -192,11 +192,14 @@ var currentParent = ""
                     var $subview = $this.parents( '.dl-subview:first' );
                     if( $subview.is( 'li' ) ) {
                         $subview.addClass( 'dl-subviewopen' );
-                        var parentText =
-                            ((((((((event.currentTarget || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {}).dataset || {}).wiki
-                        //$(".dl-subviewopen a").html()
+                        var preParent = (((((event.currentTarget || {}).parentElement || {}).parentElement || {}).parentElement || {}).parentElement || {});
+                        var parentText = (((preParent.parentElement || {}).parentElement || {}).dataset || {}).wiki;
+                        var preParentText = (preParent.dataset || {}).wiki
 
-                        $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
+                        $(".dl-header").html( preParentText ? preParentText : "Select your desired topic" );
+                        $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`);
+                    } else {
+                        $(".dl-header").html( "Select your desired topic" );
                     }
                     $subview.removeClass( 'dl-subview' );
 

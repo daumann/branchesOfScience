@@ -911,7 +911,7 @@ All this is done for any sub-level being entered.
 
 .demo-3 .dl-menuwrapper .subjectItem:hover,
 .demo-3 .dl-menuwrapper button.dl-active {
-    background: #00cb96;
+    background: #00a77f;
 }
 
 /* Demo 4 */
@@ -1174,6 +1174,8 @@ a:hover {
 }
 
 .dl-header {
+    text-transform: uppercase;
+    font-weight: 800;
     float: left;
     padding-left: 20px;
     line-height: 16px;
@@ -1203,6 +1205,7 @@ a:hover {
 }
 
 #contentWiki {
+    font-family: 'Rajdhani', sans-serif;
     color: rgb(58, 89, 113);
     margin-right: 8px;
     padding-left: 12px;
