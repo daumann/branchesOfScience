@@ -79,8 +79,8 @@ var currentParent = ""
             this.$menu = this.$el.children( 'ul.dl-menu' );
             this.$menuitems = this.$menu.find( 'li:not(.dl-back)' );
             this.$el.find( 'ul.dl-submenu' ).prepend( '<li class="dl-back"><a href="#">' + this.options.backLabel + '</a></li>' );
-            this.$el.find( 'ul.dl-submenu' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
-            this.$el.find( '#dl-menu-attach' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
+            // this.$el.find( 'ul.dl-submenu' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
+            // this.$el.find( '#dl-menu-attach' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
 
 
 

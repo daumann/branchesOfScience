@@ -6,6 +6,7 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
+    letter-spacing: 1px;
 }
 
 nav {
@@ -115,6 +116,7 @@ nav .up:hover {
 
 .dl-menuwrapper:first-child {
     margin-right: 100px;
+    white-space: nowrap;
     background: #395970;
 }
 
@@ -181,7 +183,7 @@ nav .up:hover {
 
 .dl-menuwrapper li.dl-back > a {
     padding-left: 30px;
-    background: rgba(0,0,0,0.1);
+    background: rgba(255,248,213,0.1);
 }
 
 .dl-menuwrapper li.dl-back:after,
@@ -1178,8 +1180,13 @@ a:hover {
     font-weight: 800;
     float: left;
     padding-left: 20px;
-    line-height: 16px;
-    color: #c9c9c9;
+    line-height: 24px;
+    font-size: 24px;
+    color: #fff;
+    margin-top: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 340px;
 
 }
 
@@ -1215,4 +1222,8 @@ a:hover {
 
 .ui-menu .ui-menu-item {
     padding-left: 12px;
+}
+
+.no-touch .dl-menuwrapper li a:hover {
+    background: rgba(0,0,0,0.1);
 }

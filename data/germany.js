@@ -6,11 +6,10 @@ var germanyGeojson = {
       "id": 0,
       "properties": {
           "stroke": "#555555",
-          "stroke-width": 2,
+          "stroke-width": 5,
           "stroke-opacity": 1,
           "fill": "#555555",
           "fill-opacity": 0.5,
-          "Name": "Area One"
       },
       "geometry": {
         "type": "MultiPolygon",
