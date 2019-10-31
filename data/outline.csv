@@ -633,6 +633,7 @@ Anatomy,Anatomy,Biology
 Comparative anatomy,Comparative anatomy,Anatomy
 Human anatomy,Human anatomy,Anatomy
 Biochemistry,Biochemistry,Biology
+Biogeography,Biogeography,Biology
 Bioinformatics,Bioinformatics,Biology
 Biophysics,Biophysics,Biology
 Biotechnology,Biotechnology,Biology
@@ -665,6 +666,7 @@ Forest ecology,Forest ecology,Ecology
 Freshwater biology,Freshwater biology,Ecology
 Functional ecology,Functional ecology,Ecology
 Island ecology,Island ecology,Ecology
+Landscape ecology,Landscape ecology,Ecology
 Macroecology,Macroecology,Ecology
 Microbial ecology,Microbial ecology,Ecology
 Plant ecology,Plant ecology,Ecology
@@ -679,7 +681,6 @@ Fisheries Science,Fisheries Science,Limnology
 Freshwater Biology,Freshwater Biology,Limnology
 Hydrology,Hydrology,Limnology
 Paleolimnology,Paleolimnology,Limnology
-Landscape ecology,Landscape ecology,Ecology
 Endocrinology,Endocrinology,Biology
 Evolutionary biology,Evolutionary biology,Biology
 Genetics,Genetics,Biology
@@ -803,7 +804,6 @@ Geochemistry,Geochemistry,Earth sciences
 Geodesy,Geodesy,Earth sciences
 Physical geography,Physical geography,Earth sciences
 Atmospheric science,Atmospheric science,Physical geography
-Biogeography,Biogeography,Biology
 Climatology,Climatology,Physical geography
 Coastal geography,Coastal geography,Physical geography
 Edaphology,Edaphology,Physical geography
