@@ -428,6 +428,7 @@
     var BACKGROUNDCOLOR1 = '#dadada'
     var BACKGROUNDCOLOR2 = '#fff7f7'
     var MARKERCOLOR = '#607d93'
+    var canShowTooltip = false
 
     var toAddAsterix = ['Natural Sciences', 'Biology', 'Ecology', 'Invasion biology']
 
@@ -599,6 +600,7 @@
 
         function handleMouseOver(d, event) {
             event.stopPropagation();
+            canShowTooltip = true
             var pathList = event.path.map(function (e) {
                 return e.className
             })
@@ -643,7 +645,7 @@
                     var maxTextLength = 250
                     var fullText = wikiData.extract_html.substring(0, maxTextLength)
                     tooltipSpan.innerHTML = (imgIbj ? '<img src="' + imgIbj.source + '" style="float: right; padding-bottom: 12px; width: 208px;">' : '') + '<div style="width: 200px; padding-left: 12px; padding-right: 12px;">' + fullText + ((fullText.length === maxTextLength) ? '...' : '') + '</div>'
-                    tooltipSpan.style.opacity = 1
+                    if (canShowTooltip) tooltipSpan.style.opacity = 1
                 }, 100)
             })
         }
@@ -651,6 +653,7 @@
 
         function handleMouseOut(d, event) {
             event.stopPropagation()
+            canShowTooltip = false
             if (!lockUnis) cleanUp()
             currentlySelected = false
             tooltipSpan.style.opacity = 0
