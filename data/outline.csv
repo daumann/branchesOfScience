@@ -650,6 +650,35 @@ Ecology,Ecology,Biology
 Agroecology,Agroecology,Ecology
 Ethnoecology,Ethnoecology,Ecology
 Human ecology,Human ecology,Ecology
+Invasive_species,Invasion biology,Ecology
+Behavioral_ecology,Behavioral ecology,Ecology
+Biogeochemistry,Biogeochemistry,Ecology
+Chemical ecology,Chemical ecology,Ecology
+Community_(ecology),Community ecology,Ecology
+Conservation biology,Conservation biology,Ecology
+Desert ecology,Desert ecology,Ecology
+Disease ecology,Disease ecology,Ecology
+Ecophysiology,Ecophysiology,Physiology
+Ecosystem ecology,Ecosystem ecology,Ecology
+Evolutionary ecology,Evolutionary ecology,Ecology
+Forest ecology,Forest ecology,Ecology
+Freshwater biology,Freshwater biology,Ecology
+Functional ecology,Functional ecology,Ecology
+Island ecology,Island ecology,Ecology
+Macroecology,Macroecology,Ecology
+Microbial ecology,Microbial ecology,Ecology
+Plant ecology,Plant ecology,Ecology
+Polar ecology,Polar ecology,Ecology
+Population ecology,Population ecology,Ecology
+Restoration ecology,Restoration ecology,Ecology
+Soil ecology,Soil ecology,Ecology
+Systems ecology,Systems ecology,Ecology
+Theoretical ecology,Theoretical ecology,Ecology
+Urban ecology,Urban ecology,Ecology
+Fisheries Science,Fisheries Science,Limnology
+Freshwater Biology,Freshwater Biology,Limnology
+Hydrology,Hydrology,Limnology
+Paleolimnology,Paleolimnology,Limnology
 Landscape ecology,Landscape ecology,Ecology
 Endocrinology,Endocrinology,Biology
 Evolutionary biology,Evolutionary biology,Biology
@@ -661,7 +690,6 @@ Histology,Histology,Biology
 Human biology,Human biology,Biology
 Immunology,Immunology,Biology
 Limnology,Limnology,Biology
-Linnaean taxonomy,Linnaean taxonomy,Biology
 Marine biology,Marine biology,Biology
 Mathematical biology,Mathematical biology,Biology
 Microbiology,Microbiology,Biology
@@ -673,7 +701,7 @@ Nutrition,Nutrition,Biology
 Paleobiology,Paleobiology,Biology
 Paleontology,Paleontology,Paleobiology
 Parasitology,Parasitology,Biology
-Pathology,Pathology,Biology
+Pathology,Pathology,Medicine and health
 Anatomical pathology,Anatomical pathology,Pathology
 Clinical pathology,Clinical pathology,Pathology
 Dermatopathology,Dermatopathology,Pathology
@@ -690,7 +718,7 @@ Systematics,Systematics,Biology
 Systems biology,Systems biology,Biology
 Virology,Virology,Biology
 Molecular virology,Molecular virology,Virology
-Xenobiology,Xenobiology,Biology
+Xenobiology,Xenobiology,Synthetic biology
 Zoology,Zoology,Biology
 Animal communication,Animal communication,Zoology
 Apiology,Apiology,Zoology
@@ -775,7 +803,7 @@ Geochemistry,Geochemistry,Earth sciences
 Geodesy,Geodesy,Earth sciences
 Physical geography,Physical geography,Earth sciences
 Atmospheric science,Atmospheric science,Physical geography
-Biogeography,Biogeography,Physical geography
+Biogeography,Biogeography,Biology
 Climatology,Climatology,Physical geography
 Coastal geography,Coastal geography,Physical geography
 Edaphology,Edaphology,Physical geography

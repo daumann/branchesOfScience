@@ -243,7 +243,7 @@
         z-index: 9;
         top: 0;
         left: 0;
-        width: 400px;
+        width: 300px;
         background: #ffffffbf;
         margin-bottom: -20px;
         margin-top: 12px;
@@ -271,7 +271,7 @@
     }
 
     .collapsible {
-        background-color: #777;
+        background-color: #919191;
         color: white;
         cursor: pointer;
         padding: 18px;
@@ -280,6 +280,7 @@
         text-align: left;
         outline: none;
         font-size: 15px;
+        margin-bottom: 2px;
     }
 
     .active, .collapsible:hover {
@@ -287,6 +288,7 @@
     }
 
     .content {
+        letter-spacing: initial;
         padding: 0 18px;
         display: none;
         overflow: hidden;
@@ -315,9 +317,9 @@
     <!--</div>-->
     <div class="iframeContainer">
         <div style="padding-right: 12px; font-family: 'Rajdhani', sans-serif;">
-            <a style="color: #607D93; font-weight: 600" target="_blank" href="http://www.hi-knowledge.org"><img id="logoId" src="./images/BoS_image_TopLeft-3.svg" alt="Hi-Knowledge – dive into science" draggable="false"></a>
+            <a style="color: #607D93; font-weight: 600" target="_blank" href="http://www.hi-knowledge.org"><img id="logoId" src="./images/BoS_Logo.svg" alt="Hi-Knowledge – dive into science" draggable="false"></a>
             <div>
-                <div style="padding-left: 14px;padding-right: 14px;">
+                <div style="padding-left: 28px;padding-right: 56px;font-size: small;">
                     <h3 style="color: #437080; font-family: 'Rajdhani', sans-serif; font-weight: 800; margin-bottom: 2px;">
                         mapping scientific disciplines and universities</h3>
                     <span style="font-weight: 800;color: #00d2a0;font-size: 14px;font-style: italic;">in Germany</span>
@@ -388,14 +390,14 @@
     <div id="mapLegend">
         <div id="legend">
             <ul class="0-legend">
-                <li><a style="color: #607D93; font-weight: 600" target="_blank" href="http://www.hi-knowledge.org">(<span style="font-weight: 800;padding: 0px;margin-right: -6px;margin-left: -1px;">*</span>) Connected to Hi Knowledge Networks</a></li>
+                <li><a style="color: #607D93; font-weight: 600" target="_blank" href="http://www.hi-knowledge.org"><img src="./images/BoS_Icon.png" style="height: 22px; margin-bottom: -6px; width: auto" alt="Hi-Knowledge – dive into science" title="Go to Hi-Knowledge" draggable="false"> Connected to Hi Knowledge Networks</a></li>
                 <br/>
                 <br/>
                 <li style="padding-left: 8px; color: #607D93; font-weight: 600"><span
                         style="background-color:#5f7d93; border: 2px solid #607d93; border-radius: 50%;"></span>Universities in selection
                 </li>
                 <br/>
-                <li style="padding-left: 8px; color: #607D93; font-weight: 600"><span                        style="background-color:#00d2a0; border: 2px solid #607d93; border-radius: 50%;"></span>Category match
+                <li style="padding-left: 8px; color: #607D93; font-weight: 600"><span style="background-color:#00d2a0; border: 2px solid #607d93; border-radius: 50%;"></span>Category match
                 </li>
                 <br/>
                 <li style="padding-left: 8px; color: #607D93; font-weight: 600" class=""><span
@@ -405,7 +407,6 @@
         </div>
     </div>
     <div id="map">
-
     </div>
 </div>
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -428,7 +429,7 @@
     var BACKGROUNDCOLOR2 = '#fff7f7'
     var MARKERCOLOR = '#607d93'
 
-    var toAddAsterix = ['Natural Sciences', 'Biology', 'Ecology']
+    var toAddAsterix = ['Natural Sciences', 'Biology', 'Ecology', 'Invasion biology']
 
     function triggerEvent(el, type) {
         if ('createEvent' in document) {
@@ -810,10 +811,8 @@
                     return unique;
                 }, []));
 
-
-            // TODO:
-
             var idIterator = 0
+            var hiKIcon = '<a class="hiKa" style="color: #607D93; font-weight: 600" target="_blank" href="http://www.hi-knowledge.org"><img class="logoIcon" src="./images/BoS_Icon.png" alt="Hi-Knowledge – dive into science" title="Go to Hi-Knowledge" draggable="false"></a>'
 
             function buildDropdowns(restOfTree, attachTo, init) {
                 if (!restOfTree) return
@@ -832,7 +831,10 @@
                     li.dataset.wiki = child.data.itemWiki
                     li.id = "myDl" + child.id  // + idIterator
                     idIterator = idIterator + 1;
-                    li.innerHTML = '<a href="#">' + child.id + (toAddAsterix.indexOf(child.id) > -1 ? ' (*)' : '') + '</a>'
+
+
+                    var addLogo = toAddAsterix.indexOf(child.id) > -1
+                    li.innerHTML = '<a class="liSubject" href="#">' + child.id + (addLogo ? hiKIcon : '') + '</a>'
                     li.addEventListener("mouseover", function (e) {
                         handleMouseOver(child, e)
                     });

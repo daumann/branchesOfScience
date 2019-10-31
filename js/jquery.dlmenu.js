@@ -78,7 +78,7 @@ var currentParent = ""
             this.$trigger = this.$el.children( '.dl-trigger' );
             this.$menu = this.$el.children( 'ul.dl-menu' );
             this.$menuitems = this.$menu.find( 'li:not(.dl-back)' );
-            this.$el.find( 'ul.dl-submenu' ).prepend( '<li class="dl-back"><a href="#">' + this.options.backLabel + '</a></li>' );
+            this.$el.find( 'ul.dl-submenu' ).prepend( '<li class="dl-back"><a class="liSubject" href="#">' + this.options.backLabel + '</a></li>' );
             // this.$el.find( 'ul.dl-submenu' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
             // this.$el.find( '#dl-menu-attach' ).prepend('<li class="dl-legend-menu"><a target="_blank" href="http://www.hi-knowledge.org"><span style="font-weight: 800">(*)</span> connected to Hi Knowledge Networks</a></li>');
 
@@ -122,6 +122,10 @@ var currentParent = ""
 
             this.$menuitems.on( 'click.dlmenu', function( event ) {
                 event.stopPropagation();
+                if (event.target.className === "logoIcon") {
+                    var win = window.open('https://hi-knowledge.org/', '_blank');
+                    return win.focus();
+                }
 
                 var $item = $(this),
                     $submenu = $item.children( 'ul.dl-submenu' );
@@ -131,7 +135,7 @@ var currentParent = ""
                 if( ($submenu.length > 0) && !($(event.currentTarget).hasClass('dl-subviewopen'))) {
                     var parentText = (($(".subjectItem.dl-subviewopen")[0] || {}).dataset || {}).wiki
                     $(".dl-header").html( $item[0].dataset.wiki )
-                    $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
+                    $(".dl-back").html(`<a class="liSubject" href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`)
 
                     // $(".dl-submenu").prepend( '<a href="#">Alternative medicine</a>' );
 
@@ -197,7 +201,7 @@ var currentParent = ""
                         var preParentText = (preParent.dataset || {}).wiki
 
                         $(".dl-header").html( preParentText ? preParentText : "Select your desired topic" );
-                        $(".dl-back").html(`<a href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`);
+                        $(".dl-back").html(`<a class="liSubject" href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`);
                     } else {
                         $(".dl-header").html( "Select your desired topic" );
                     }
