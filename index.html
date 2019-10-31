@@ -601,10 +601,11 @@
         function handleMouseOver(d, event) {
             event.stopPropagation();
             canShowTooltip = true
-            var pathList = event.path.map(function (e) {
+            var path = event.path || (event.composedPath && event.composedPath()) || [];
+            var pathList = path.map(function (e) {
                 return e.className
             })
-            if (pathList.indexOf("dl-legend-menu") > -1 || pathList.indexOf("dl-back") > -1) return
+            if (event.target.className === "logoIcon" || pathList.indexOf("dl-legend-menu") > -1 || pathList.indexOf("dl-back") > -1) return
             var wikiId = d.data.itemWiki || d.data.data.itemWiki
             var wikiLabel = d.data.itemLabel || d.data.data.itemLabel
             var dataHeight = typeof d.height !== "undefined" ? d.height : d.data.height
@@ -637,7 +638,6 @@
 
             var {x, y} = document.getElementById('myDl' + d.id).getBoundingClientRect()
             tooltipSpan.innerHTML = ''
-            tooltipSpan.style.top = Math.floor(y / 2) + 'px';
             tooltipSpan.style.left = (x - 214) + 'px';
             $.get("https://en.wikipedia.org/api/rest_v1/page/summary/" + wikiId, function (wikiData) {
                 setTimeout(function () {
@@ -646,6 +646,14 @@
                     var fullText = wikiData.extract_html.substring(0, maxTextLength)
                     tooltipSpan.innerHTML = (imgIbj ? '<img src="' + imgIbj.source + '" style="float: right; padding-bottom: 12px; width: 208px;">' : '') + '<div style="width: 200px; padding-left: 12px; padding-right: 12px;">' + fullText + ((fullText.length === maxTextLength) ? '...' : '') + '</div>'
                     if (canShowTooltip) tooltipSpan.style.opacity = 1
+
+                    setTimeout(function () {
+                        var newTop = Math.floor(y)
+                        var maxTop = document.body.offsetHeight - tooltipSpan.offsetHeight
+                        if (newTop < 0) newTop = 0
+                        if (newTop > maxTop) newTop = maxTop
+                        tooltipSpan.style.top = newTop + 'px';
+                    }, 100)
                 }, 100)
             })
         }
