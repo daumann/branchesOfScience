@@ -982,12 +982,12 @@ body {
 }
 
 a {
-    color: #ccc;
+    color: #00d2a0;
     text-decoration: none;
 }
 
 a:hover {
-    color: #fff;
+    color: #395870;
 }
 
 .main,
@@ -1181,7 +1181,7 @@ a:hover {
     float: left;
     padding-left: 20px;
     line-height: 24px;
-    font-size: 24px;
+    font-size: 22px;
     color: #fff;
     margin-top: 15px;
     overflow: hidden;
@@ -1237,7 +1237,7 @@ a:hover {
     height: 38px;
     opacity: 0.7;
     padding: 2px;
-    border: 2px solid white;
+    /*border: 2px solid white;*/
 }
 
 .hiKa { z-index: 9999; }

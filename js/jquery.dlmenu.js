@@ -200,10 +200,10 @@ var currentParent = ""
                         var parentText = (((preParent.parentElement || {}).parentElement || {}).dataset || {}).wiki;
                         var preParentText = (preParent.dataset || {}).wiki
 
-                        $(".dl-header").html( preParentText ? preParentText : "Select your desired topic" );
+                        $(".dl-header").html( preParentText ? preParentText : "Select your desired branch" );
                         $(".dl-back").html(`<a class="liSubject" href="#">Back to ${parentText ? parentText : "Branches of Science"}</a>`);
                     } else {
-                        $(".dl-header").html( "Select your desired topic" );
+                        $(".dl-header").html( "Select your desired branch" );
                     }
                     $subview.removeClass( 'dl-subview' );
 

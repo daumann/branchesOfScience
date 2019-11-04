@@ -323,23 +323,20 @@
                     <h3 style="color: #437080; font-family: 'Rajdhani', sans-serif; font-weight: 800; margin-bottom: 2px;">
                         mapping scientific disciplines and universities</h3>
                     <span style="font-weight: 800;color: #00d2a0;font-size: 14px;font-style: italic;">in Germany</span>
-                    <p style="color: #437080; font-weight: 800;">Here goes a description of the project. It should be
-                        running on 4-5 lines of text, and below here goes a Wikipedia box, where content is loaded
-                        dynamically.</p>
+                    <p style="color: #437080; font-weight: 800;">Academic knowledge, in the form of Branches of Science, is connected to universities in Germany. You can explore this interesting tree of knowledge, and find where given topics and courses are available in German universities. Databases: Wikipedia, <a target="_blank" href="https://www.daad.de/">Daad</a>. Reach out for any inquiry <a href="mailto:jonathan.jeschke@gmx.net">here</a>.</p>
                 </div>
             </div>
-            <div style="
-    background: #f8f8f8;
+            <div style="background: #f8f8f8;
     height: 10px;
     width: calc(100% + 40px);
     padding-top: 4px;
     margin-left: -36px;
-    margin-top: 19px;
-"></div>
+    margin-top: 19px;"></div>
         </div>
-        <iframe id="articleIframe" src="https://en.wikipedia.org/wiki/Branches_of_science?printable=yes" frameborder="0"
-                style="width: 100%;display: block;"></iframe>
-
+        <div style="width: 100%;">
+            <a id="articleLink" style="height: 18px;width: 18px;position: absolute;right: 30px;margin-top: 20px;background: white;" target="_blank" href="https://en.wikipedia.org/wiki/Branches_of_science" title="Open Wikipedia Article"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="external-link-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-external-link-alt fa-w-16"><path fill="currentColor" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z" class=""></path></svg></a>
+        </div>
+        <iframe id="articleIframe" src="https://en.wikipedia.org/wiki/Branches_of_science?printable=yes" frameborder="0" style="width: 100%;display: block;"></iframe>
         <div id="contentWiki" style="display: none">
             <h3 id="universityLocation"></h3>
             <div id="universityCourses"></div>
@@ -379,7 +376,7 @@
         <div class="main clearfix" style="pointer-events: none;">
             <div class="column" style="pointer-events: none;">
                 <div id="dl-menu" class="dl-menuwrapper">
-                    <h3 class="dl-header">Select your desired topic</h3>
+                    <h3 class="dl-header">Select your desired branch</h3>
                     <button class="dl-trigger dl-active">Branches of Science</button>
                     <ul class="dl-menu" id="dl-menu-attach" style="pointer-events: all;">
                     </ul>
@@ -499,8 +496,8 @@
             center: [51.42, 9.60],
             zoom: 18,
             zoomSnap: 0.25,
-            maxZoom: 18,
-            minZoom: 4,
+            maxZoom: 7,
+            minZoom: 5,
             // maxBounds: bounds,
             layers: new L.TileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -577,11 +574,11 @@
                     var wikiId = ((d.data || {}).data || {}).itemWiki
                     if (wikiId) {
                         $("#myDiv").css("height", Math.floor(document.body.offsetHeight * 0.8) + "px")
-                        $("#wikiIframe").attr("src", 'https://en.wikipedia.org/wiki/' + wikiId + '?printable=yes')
                         var wikiAlreadyOpen = $("#myDiv").css("display") === "block"
 
                         if (!wikiAlreadyOpen) {
                             $("#articleIframe").css("display", "block")
+                            $("#articleLink").css("display", "block")
                             $("#contentWiki").css("display", "none");
                             slideIn()
                         }
@@ -635,14 +632,14 @@
 
             var {x, y} = document.getElementById('myDl' + d.id).getBoundingClientRect()
             tooltipSpan.innerHTML = ''
-            tooltipSpan.style.left = (x - 214) + 'px';
+            tooltipSpan.style.left = (x + 356) + 'px';
             $.get("https://en.wikipedia.org/api/rest_v1/page/summary/" + wikiId, function (wikiData) {
                 setTimeout(function () {
                     var imgIbj = wikiData.thumbnail
                     var maxTextLength = 250
                     var fullText = wikiData.extract_html.substring(0, maxTextLength)
+                    tooltipSpan.style.opacity = 0
                     tooltipSpan.innerHTML = (imgIbj ? '<img src="' + imgIbj.source + '" style="float: right; padding-bottom: 12px; width: 208px;">' : '') + '<div style="width: 200px; padding-left: 12px; padding-right: 12px;">' + fullText + ((fullText.length === maxTextLength) ? '...' : '') + '</div>'
-                    if (canShowTooltip) tooltipSpan.style.opacity = 1
 
                     setTimeout(function () {
                         var newTop = Math.floor(y)
@@ -650,11 +647,11 @@
                         if (newTop < 0) newTop = 0
                         if (newTop > maxTop) newTop = maxTop
                         tooltipSpan.style.top = newTop + 'px';
+                        if (canShowTooltip) tooltipSpan.style.opacity = 1
                     }, 100)
                 }, 100)
             })
         }
-
 
         function handleMouseOut(d, event) {
             event.stopPropagation()
@@ -669,7 +666,6 @@
                     .style('fill-opacity', 1)
             }, 200)
         }
-
 
         var universityNames = Object.keys(universityLatLng)
         universities = Object.values(universityLatLng).map((el, index) => {
@@ -734,6 +730,7 @@
             $("#universityLocation").html("Universities in " + universityName)
             const wikiAlreadyOpen = $("#myDiv").css("display") === "block"
             $("#articleIframe").css("display", "none");
+            $("#articleLink").css("display", "none")
             $("#contentWiki").css("display", "block");
             // $("#contentWiki").css("height", Math.floor(document.body.offsetHeight * 0.8) + "px")
             // $("#universityCourses").html("<ul>" + (universitiesToCourses[universityName] || []).map(el => "<li>" + el + "</li>").join("") + "</ul>")
@@ -787,6 +784,7 @@
 
         function closeContent() {
             $("#articleIframe").css("display", "block");
+            $("#articleLink").css("display", "block")
             $("#contentWiki").css("display", "none");
             slideIn();
         }
@@ -882,7 +880,10 @@
             var wikiId = elm.context.className === "dl-back" ? (((elm || {})[0].parentElement.parentElement.dataset || {}).wiki || "branches_of_science") : (((elm || {})[0] || {}).dataset || {}).wiki
             if (wikiId) {
                 $("#articleIframe").attr("src", 'https://en.wikipedia.org/wiki/' + wikiId + '?printable=yes')
+                $("#articleLink").attr("href", 'https://en.wikipedia.org/wiki/' + wikiId)
+
                 $("#articleIframe").css("display", "block");
+                $("#articleLink").css("display", "block")
                 $("#contentWiki").css("display", "none");
 
             }
