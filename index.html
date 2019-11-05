@@ -263,7 +263,7 @@
 
     th, td {
         text-align: left;
-        padding: 16px;
+        padding: 8px;
     }
 
     tr:nth-child(even) {
@@ -545,7 +545,10 @@
                         if (dataHeight !== 0 && (dataChildren || []).length > 0) {
                             $(".leaflet-fa-markers").css("opacity", 0.2)
                             hideUnused(dataChildren)
-                            highlightUniversitiesChildren(dataChildren)
+                            var found = highlightUniversitiesChildren(dataChildren)
+                            if (found === 0) {
+                                highlightUniversitiesChildren(d.parent.children || d.parent._children, true)
+                            }
                         } else if (goToRoot) {
                             $(".leaflet-fa-markers").css("opacity", 1)
                         } else {
@@ -555,7 +558,10 @@
                             }
                             else {
                                 // highlight all root classes
-                                highlightUniversitiesChildren(d.parent.children || d.parent._children)
+                                var found = highlightUniversitiesChildren(d.parent.children || d.parent._children)
+                                if (found === 0) {
+                                    highlightUniversitiesChildren(d.parent.parent.children || d.parent.parent._children)
+                                }
                             }
                         }
                     }
@@ -612,7 +618,10 @@
                     $("#mapLegend").css("opacity", 1)
                 } else {
                     if (dataHeight !== 0) {
-                        highlightUniversitiesChildren(dataChildren)
+                        var found = highlightUniversitiesChildren(dataChildren)
+                        if (found === 0) {
+                            highlightUniversitiesChildren(d.parent.children || d.parent._children)
+                        }
                     } else {
                         var toHighlight = coursesToUniversities[wikiLabel]
                         if (toHighlight && toHighlight.length !== 0) {
@@ -620,7 +629,10 @@
                         }
                         else {
                             // highlight all root classes
-                            highlightUniversitiesChildren(d.parent.children || d.parent._children)
+                            var found = highlightUniversitiesChildren(d.parent.children || d.parent._children)
+                            if (found === 0) {
+                                highlightUniversitiesChildren(d.parent.parent.children || d.parent.parent._children)
+                            }
                         }
                     }
                 }
@@ -733,11 +745,9 @@
             $("#articleIframe").css("display", "none");
             $("#articleLink").css("display", "none")
             $("#contentWiki").css("display", "block");
-            // $("#contentWiki").css("height", Math.floor(document.body.offsetHeight * 0.8) + "px")
-            // $("#universityCourses").html("<ul>" + (universitiesToCourses[universityName] || []).map(el => "<li>" + el + "</li>").join("") + "</ul>")
 
             var uniqueUniversities = [];
-            (universitiesToCourses[universityName] || []).forEach(el => {
+            (citiesToCourses[universityName] || []).forEach(el => {
                 if (el[1] && uniqueUniversities.indexOf(el[1].university) === -1) {
                     uniqueUniversities.push(el[1].university)
                 }
@@ -745,7 +755,9 @@
 
             $("#universityCourses").html('')
             uniqueUniversities.forEach(uniName => {
-                $("#universityCourses").append('<button type="button" class="collapsible">' + uniName + '</button> <div class="content"><table id="' + uniName + '-table"> <tr> <th onclick="sortTable(\'' + uniName + '-table\',0)">Course</th> <th onclick="sortTable(\'' + uniName + '-table\',1)">Language</th> <th onclick="sortTable(\'' + uniName + '-table\',2)">Type</th> </tr>' + (universitiesToCourses[universityName] || []).filter(el => el[1]).map(el => '<tr> <td>' + el[0] + '</td> <td>' + el[1].language + '</td> <td>' + el[1].type + '</td> </tr>').join("")
+                var uniqueSubjects = [...new Map((universitiesToCourses[uniName] || []).map(item =>
+                    [item["name"], item])).values()]
+                $("#universityCourses").append('<button type="button" class="collapsible">' + uniName + '</button> <div class="content"><table id="' + uniName + '-table"> <tr> <th onclick="sortTable(\'' + uniName + '-table\',0)">Course</th> <th onclick="sortTable(\'' + uniName + '-table\',1)">Language</th> <th onclick="sortTable(\'' + uniName + '-table\',2)">Type</th> </tr>' + uniqueSubjects.map(el => '<tr> <td title="' + el.name + '">' + el.name + '</td> <td>' + el.language + '</td> <td>' + el.type + '</td> </tr>').join("")
                     + '</table> </div>')
             })
 
@@ -841,7 +853,7 @@
 
 
                     var addLogo = toAddAsterix.indexOf(child.id) > -1
-                    li.innerHTML = '<a class="liSubject" href="#">' + child.id + (addLogo ? hiKIcon : '') + '</a>'
+                    li.innerHTML = '<div class="liSubject" href="#">' + (addLogo ? hiKIcon : '') + child.id + '</div>'
                     li.addEventListener("mouseover", function (e) {
                         handleMouseOver(child, e)
                     });
@@ -1078,17 +1090,21 @@
             })
         }
 
-        function highlightUniversitiesChildren(children, isFromHide) {
-            if (!children) return
+        function highlightUniversitiesChildren(children, isFromHide, isFound) {
+            if (!children) return 0
+            isFound = isFound || 0
             children.forEach((child) => {
                 if (child.height === 0) {
                     var wikiLabel = (child.data.data || {}).itemLabel || child.data.itemLabel
-                    highlightUniversities(coursesToUniversities[wikiLabel], true, isFromHide)
+                    var toHighlight = coursesToUniversities[wikiLabel] || []
+                    highlightUniversities(toHighlight, true, isFromHide)
+                    isFound += toHighlight.length
                 }
                 else {
-                    highlightUniversitiesChildren((child.data || {}).children || child.children, isFromHide)
+                    isFound = isFound + highlightUniversitiesChildren((child.data || {}).children || child.children, isFromHide, isFound)
                 }
             })
+            return isFound
         }
 
         function cleanUp() {

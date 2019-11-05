@@ -187,7 +187,7 @@ nav .up:hover {
 }
 
 .dl-menuwrapper li.dl-back:after,
-.dl-menuwrapper li > a:not(:only-child):after {
+.dl-menuwrapper li > div:not(:only-child):after {
     position: absolute;
     top: 0;
     line-height: 50px;
@@ -204,7 +204,7 @@ nav .up:hover {
     transform: rotate(180deg);
 }
 
-.dl-menuwrapper li > a:after {
+.dl-menuwrapper li > div:after {
     right: 10px;
     color: rgba(0,0,0,0.15);
 }
@@ -248,8 +248,8 @@ The opened submenu will get the class "dl-subviewopen".
 All this is done for any sub-level being entered.
 */
 .dl-menu.dl-subview li,
-.dl-menu.dl-subview li.dl-subviewopen > a,
-.dl-menu.dl-subview li.dl-subview > a {
+.dl-menu.dl-subview li.dl-subviewopen > div,
+.dl-menu.dl-subview li.dl-subview > div {
     display: none;
 }
 
@@ -858,11 +858,11 @@ All this is done for any sub-level being entered.
     display: none;
 }
 
-.no-js .dl-menuwrapper li > a:not(:only-child) {
+.no-js .dl-menuwrapper li > div:not(:only-child) {
     background: rgba(0,0,0,0.1);
 }
 
-.no-js .dl-menuwrapper li > a:not(:only-child):after {
+.no-js .dl-menuwrapper li > div:not(:only-child):after {
     content: '';
 }
 
@@ -1249,4 +1249,24 @@ a:hover {
 
 .content, .collapsible {
     font-family: 'Rajdhani', sans-serif;
+}
+
+.content > table > tbody > tr > td:first-child, .content > table > tbody > tr > th:first-child {
+    width: 46%;
+}
+.content > table > tbody > tr > td, .content > table > tbody > tr > th {
+    display: inline-block;
+    width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content > table, .content > table > tbody, .content > table > tbody > tr {
+    display: block;
+    width: 100%;
+}
+
+.subjectItem {
+    cursor: pointer;
 }
